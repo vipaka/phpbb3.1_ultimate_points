@@ -1,0 +1,89 @@
+<!-- INCLUDE overall_header.html -->
+<!-- $Id: acp_points_forum.html 794 2011-12-24 04:34:10Z femu $ -->
+
+<a name="maincontent"></a>
+
+<!-- IF S_FORUMPOINTS -->
+
+	<h1>{L_ACP_POINTS} - {L_ACP_POINTS_FORUM_SWITCH_TITLE}</h1>
+	<p>{L_ACP_POINTS_FORUM_SWITCH_EXPLAIN}</p>
+
+	<form id="action_point_switches_form" method="post" action="{U_ACTION}">
+	<fieldset>
+		<legend>{L_ACP_POINTS_FORUM_SWITCH_TITLE}</legend> 	
+	<dl>
+		<dt><label>{L_POINTS_PERTOPIC}:</label><br />{L_POINTS_PERTOPIC_EXPLAIN}</dt>
+		<dd><label><input type="radio" class="radio" name="pertopic_enable" value="1"<!-- IF PERTOPIC_ENABLE --> id="pertopic_enable" checked="checked" <!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="pertopic_enable" value="0"<!-- IF not PERTOPIC_ENABLE --> id="pertopic_enable" checked="checked" <!-- ENDIF --> /> {L_NO}</label></dd>
+	</dl>
+	<dl>
+		<dt><label>{L_POINTS_PERPOST}:</label><br />{L_POINTS_PERPOST_EXPLAIN}</dt>
+		<dd><label><input type="radio" class="radio" name="perpost_enable" value="1"<!-- IF PERPOST_ENABLE --> id="perpost_enable" checked="checked" <!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="perpost_enable" value="0"<!-- IF not PERPOST_ENABLE --> id="perpost_enable" checked="checked" <!-- ENDIF --> /> {L_NO}</label></dd>
+	</dl>
+	<dl>
+		<dt><label>{L_POINTS_PEREDIT}:</label><br />{L_POINTS_PEREDIT_EXPLAIN}</dt>
+		<dd><label><input type="radio" class="radio" name="peredit_enable" value="1"<!-- IF PEREDIT_ENABLE --> id="peredit_enable" checked="checked" <!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="peredit_enable" value="0"<!-- IF not PEREDIT_ENABLE --> id="peredit_enable" checked="checked" <!-- ENDIF --> /> {L_NO}</label></dd>
+	</dl>	
+	</fieldset>
+
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="action_point_switches" name="action_point_switches" value="{L_SUBMIT}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+	</form>
+
+	<!-- IF S_ERROR -->
+		<div class="errorbox">
+			<h3>{L_WARNING}</h3>
+			<p>{ERROR_MSG}</p>
+		</div>
+	<!-- ENDIF -->
+
+	<h1>{L_ACP_POINTS} - {L_ACP_POINTS_FORUM_TITLE}</h1>
+	<p>{L_ACP_POINTS_FORUM_EXPLAIN}</p>
+
+	<div class="successbox">{L_ACP_POINTS_VALUES_HINT}</div>
+
+	<form id="action_point_values_form" method="post" action="{U_ACTION}">
+	<fieldset>
+		<legend>{L_FORUM_OPTIONS}</legend>
+	<dl>
+		<dt><label for="forum_topic">{L_FORUM_PERTOPIC}:</label><br /><span>{L_FORUM_PERTOPIC_EXPLAIN}</span></dt>
+		<dd><input type="text" id="forum_topic" name="forum_topic" value="{FORUM_TOPIC}" maxlength="8" size="10" /> {FORUM_POINTS_NAME}</dd>
+	</dl>
+	<dl>
+		<dt><label for="forum_post">{L_FORUM_PERPOST}:</label><br /><span>{L_FORUM_PERPOST_EXPLAIN}</span></dt>
+		<dd><input type="text" id="forum_post" name="forum_post" value="{FORUM_POST}" maxlength="8" size="10" /> {FORUM_POINTS_NAME}</dd>
+	</dl>
+	<dl>
+		<dt><label for="forum_edit">{L_FORUM_PEREDIT}:</label><br /><span>{L_FORUM_PEREDIT_EXPLAIN}</span></dt>
+		<dd><input type="text" id="forum_edit" name="forum_edit" value="{FORUM_EDIT}" maxlength="8" size="10" /> {FORUM_POINTS_NAME}</dd>
+	</dl>
+	<dl>
+		<dt><label for="points_extension">{L_EXTENSION_POINTS}</label><br />{L_EXTENSION_POINTS_EXPLAIN}</dt>
+		<dd><input type="radio" class="radio" name="points_extension" value="1"<!-- IF EXTENSION_POINTS --> id="points_extension" checked="checked" <!-- ENDIF --> /> {L_YES} &nbsp;
+			<input type="radio" class="radio" name="points_extension" value="0"<!-- IF not EXTENSION_POINTS --> id="points_extension" checked="checked" <!-- ENDIF --> /> {L_NO}</dd>
+	</dl>
+	<dl>
+		<dt><label for="points_extension_costs">{L_EXTENSION_POINTS_COSTS}</label><br />{L_EXTENSION_POINTS_COSTS_EXPLAIN}</dt>
+		<dd><input type="text" id="points_extension_costs" size="10" maxlength="10" name="points_extension_costs" value="{ADD_EXTENSION_POINTS_COSTS}" /> {POINTS_NAME}</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_FORUM_COSTS}:</label><br /><span>{L_FORUM_COSTS_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" name="forum_costs" value="1" /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="forum_costs" value="0" /> {L_NO}</label></dd>
+	</dl>
+	</fieldset>
+
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="action_point_values" name="action_point_values" value="{L_SUBMIT}" />
+	</fieldset>
+	</form>
+
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

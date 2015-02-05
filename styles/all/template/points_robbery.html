@@ -1,0 +1,85 @@
+<!-- INCLUDE overall_header.html -->
+<!-- $Id: points_robbery.html 805 2012-02-12 10:31:14Z femu $ -->
+
+<!-- INCLUDE points_menu.html -->
+
+<div class="panel bg3">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+
+		<div id="cp-menu">
+
+			<div class="cp-mini">
+				<div class="inner"><span class="corners-top"><span></span></span>
+					<dl class="mini">
+						<dd><h3>{L_POINTS_DESCRIPTION}</h3></dd>
+						<dd>{L_ROBBERY_CHANCE}</dd>
+						<dd>{L_ROBBERY_AMOUNTLOSE}</dd>
+					</dl>
+					<span class="corners-bottom"><span></span></span></div>
+				</div>
+			</div>
+
+			<div id="cp-main" class="ucp-main">
+				<h2>{L_POINTS_ROBBERY}</h2>
+				<form id="post" action="{U_ACTION}" method="post">
+				<div class="panel">
+					<div class="inner">
+						<span class="corners-top"><span></span></span>
+						<!-- IF S_USER_LOGGED_IN -->
+						<p>{L_POINTS_CASH_ON_HAND}:&nbsp;{USER_POINTS} {POINTS_NAME}</p><br />
+						<fieldset>
+						<dl>
+							<dt><label for="username">{L_ROBBERY_SET_USERNAMER}:</label></dt>
+							<dd><input type="text" tabindex="1" id="username" class="inputbox" name="username" value=""/></dd>
+							<dd><strong><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a></strong></dd>
+						</dl>
+						<dl>
+							<dt><label>{L_ROBBERY_SET_AMOUNTR}:</label></dt>
+							<dd><input type="text" tabindex="2" maxlength="10" class="inputbox autowidth" title="{L_POINTS_NUMBER_FORMAT_EXPLAIN}" name="attacked_amount" value=""/> {POINTS_NAME}</dd>
+						</dl>
+						</fieldset>
+						<fieldset class="submit-buttons">
+						{S_HIDDEN_FIELDS}
+						<input type="submit" accesskey="s" tabindex="3" name="submit" value="{L_ROBBERY_START}" class="button1" />
+						{S_FORM_TOKEN}
+						</fieldset>
+						<!-- ELSE -->
+						<p>{L_POINTS_BOT_GUEST}</p>
+						<!-- ENDIF -->
+						<span class="corners-bottom"><span></span></span>
+					</div>
+				</div>
+				</form>
+
+				<!-- IF S_ROBBERY_PM -->
+				<form id="robbery_pm" action="{U_ACTION}" method="post">
+				<div class="panel">
+					<div class="inner"><span class="corners-top"><span></span></span>
+						<fieldset>
+						<dl>
+							<dt><label for="user_robbery_pm">{L_ROBBERY_PM}</label><br />{L_ROBBERY_PM_EXPLAIN}</dt>
+							<dd>
+								<label for="user_robbery_pm1"><input type="radio" name="user_robbery_pm" id="user_robbery_pm1" value="1"<!-- IF USER_ROBBERY_PM --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+								<label for="user_robbery_pm0"><input type="radio" name="user_robbery_pm" id="user_robbery_pm0" value="0"<!-- IF not USER_ROBBERY_PM --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+							</dd>
+						</dl>
+						</fieldset>
+						<fieldset class="submit-buttons">
+						<input type="submit" name="robbery_pm" value="{L_SUBMIT}" class="button1" />
+						{S_FORM_TOKEN}
+						</fieldset>
+					<span class="corners-bottom"><span></span></span></div>
+				</div>
+				</form>
+				<!-- ENDIF -->
+
+			</div>
+
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<br /><div style="text-align: center;" class="copyright">{L_POINTS_COPYRIGHT}</div>
+
+<!-- INCLUDE overall_footer.html -->

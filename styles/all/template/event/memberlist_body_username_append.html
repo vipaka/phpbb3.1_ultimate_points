@@ -1,0 +1,14 @@
+<!-- IF USE_POINTS -->
+				<dt>{L_POINTS_CASH_ON_HAND}:</dt>
+				<dd><!-- IF U_LOCKED --><b>{L_POINTS_LOCKED}</b><!-- ELSE -->{U_POINTS1} <!-- IF USE_IMAGES_POINTS --><img src="{T_THEME_PATH}/images/money.png" width="11px" height="11px" alt="" /><!-- ELSE -->{P_NAME}<!-- ENDIF --><br /><a href="{U_POINTS_DONATE}">{L_DONATE}</a> <a href="{U_POINTS_MODIFY}">{L_MOD_USER_POINTS}</a><!-- ENDIF --></dd>
+			<!-- IF USE_BANK -->
+				<!-- BEGIN has_account -->
+				<dt>{L_BANK_BALANCE}:</dt>
+				<dd><!-- IF U_BLOCKED --><b>{L_POINTS_LOCKED}</b><!-- ELSE --> {BANK_GOLD} <!-- IF USE_IMAGES_POINTS --><img src="{T_THEME_PATH}/images/money.png" width="11px" height="11px" alt="" /><!-- ELSE -->{P_NAME}<!-- ENDIF --><br /><a href="{U_BANK_MODIFY}">{L_MOD_USER_BANK}</a><!-- ENDIF --></dd>
+				<!-- END has_account -->
+				<!-- BEGIN no_account -->
+				<dt>{L_BANK_BALANCE}:</dt>
+				<dd>{no_account.BANK_NO_ACCOUNT}</dd>
+				<!-- END no_account -->
+			<!-- ENDIF -->
+<!-- ENDIF -->

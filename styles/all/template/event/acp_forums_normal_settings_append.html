@@ -1,0 +1,23 @@
+	<div id="forum_points_options">
+			<fieldset>
+				<legend>{L_FORUM_POINT_SETTINGS}</legend>
+				<p>{L_FORUM_POINT_SETTINGS_EXPLAIN}</p>
+				<dl>
+					<dt><label>{L_FORUM_PERTOPIC}:</label><br /><span>{L_FORUM_PERTOPIC_EXPLAIN}</span></dt>
+					<dd><input type="text" id="forum_pertopic" maxlength="6" size="5" name="forum_pertopic" value="{FORUM_PERTOPIC}" /></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_FORUM_PERPOST}:</label><br /><span>{L_FORUM_PERPOST_EXPLAIN}</span></dt>
+					<dd><input type="text" id="forum_perpost" maxlength="6" size="5" name="forum_perpost" value="{FORUM_PERPOST}" /></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_FORUM_PEREDIT}:</label><br /><span>{L_FORUM_PEREDIT_EXPLAIN}</span></dt>
+					<dd><input type="text" id="forum_peredit" maxlength="6" size="5" name="forum_peredit" value="{FORUM_PEREDIT}" /></dd>
+				</dl>
+				<dl>
+					<dt><label>{L_FORUM_COSTS}:</label><br /><span>{L_FORUM_COSTS_EXPLAIN}</span></dt>
+					<dd><label><input type="radio" class="radio" name="forum_costs" value="1"<!-- IF S_FORUM_COSTS --> id="forum_costs" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+						<label><input type="radio" class="radio" name="forum_costs" value="0"<!-- IF not S_FORUM_COSTS --> id="forum_costs" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+				</dl>
+			</fieldset>
+		</div>

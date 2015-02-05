@@ -1,0 +1,311 @@
+<!-- INCLUDE overall_header.html -->
+
+
+
+<!-- IF S_MENU_BUTTONS -->
+
+		<!-- IF S_MENU_BUTTONS_LIST -->
+  
+    <h1>{L_ACP_MENU_BUTTONS_TITLE}</h1>
+    
+    <p>{L_CREATE_BUTTON_EXPLAIN}</p>
+    
+    <p><strong>{S_BUTTONS_NAV}</strong></p>
+    <!-- IF .buttons -->  
+    	<table cellspacing="2">
+    		<col class="row1" /><col class="row2" />
+    		<tbody>
+    		<!-- BEGIN buttons -->
+    			<tr>
+    				<td>
+    					<strong><!-- IF not S_PARENT_ID || not S_SUB_PARENT_ID --><a href="{buttons.U_OPEN}">{buttons.NAME}</a><!-- ELSE -->{buttons.NAME}<!-- ENDIF --></strong>
+    					<br /><span>{buttons.URL}</span>
+    				</td>
+    				<td style="width: 10%; text-align: center; white-space: nowrap;">
+      				<!-- IF buttons.S_FIRST_ROW && not buttons.S_LAST_ROW -->
+    						{ICON_MOVE_UP_DISABLED}
+    						<a href="{buttons.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a>
+    					<!-- ELSEIF not buttons.S_FIRST_ROW && not buttons.S_LAST_ROW -->
+    						<a href="{buttons.U_MOVE_UP}">{ICON_MOVE_UP}</a>
+    						<a href="{buttons.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a>
+    					<!-- ELSEIF buttons.S_LAST_ROW && not buttons.S_FIRST_ROW -->
+    						<a href="{buttons.U_MOVE_UP}">{ICON_MOVE_UP}</a>
+    						{ICON_MOVE_DOWN_DISABLED}
+    					<!-- ELSE -->
+    						{ICON_MOVE_UP_DISABLED}
+    						{ICON_MOVE_DOWN_DISABLED}
+    					<!-- ENDIF -->
+    					<a href="{buttons.U_EDIT}">{ICON_EDIT}</a>
+    					<a href="{buttons.U_DELETE}">{ICON_DELETE}</a>  
+    				</td>
+    			</tr>
+    		<!-- END buttons -->
+    		</tbody>
+    	</table>
+    <!-- ELSE -->
+      <div class="errorbox"><!-- IF not S_PARENT_ID -->{L_NO_BUTTONS}<!-- ELSE -->{L_NO_SUBBUTTONS}<!-- ENDIF --></div>
+    <!-- ENDIF -->        
+    
+    <form method="post" action="">    
+      <fieldset class="quick">
+      	<input class="post" type="text" maxlength="100" id="menu_button_name" name="button_name" value="" />
+        <input class="button2" type="submit" id="submit" name="submit" value="{L_ACP_MENU_ADD_BUTTON_TITLE}" />&nbsp;
+        {S_FORM_TOKEN} 
+      </fieldset>
+    </form>
+    
+  <!-- ELSEIF S_MENU_CREATE_BUTTON or S_MENU_EDIT_BUTTON -->
+  
+    <h1><!-- IF S_MENU_EDIT_BUTTON -->{L_ACP_MENU_EDIT_BUTTON}<!-- ELSE -->{L_ACP_MENU_ADD_BUTTON_TITLE}<!-- ENDIF --></h1>
+    
+    <form method="post" action="">
+      <fieldset>
+    		<dl>
+    			<dt><label for="menu_button_name">{L_MENU_BUTTON_NAME}</label></dt>
+    			<dd><input class="post" type="text" size="50" maxlength="100" id="menu_button_name" name="button_name" value="{S_NAME}" /></dd>
+    		</dl>
+    		<dl>
+    			<dt><label for="menu_button_url">{L_MENU_BUTTON_URL}</label><br />{L_MENU_BUTTON_URL_EXPLAIN}</dt>
+    			<dd><input class="post" type="text" size="50" id="menu_button_url" name="button_url" value="<!-- IF not S_MENU_EDIT_BUTTON -->http://<!-- ENDIF -->{S_URL}" /></dd>
+    		</dl>
+    		<dl>
+    		  <dt><label for="menu_button_parent">{L_MENU_BUTTON_PARENT}</label><br />{L_MENU_BUTTON_PARENT_EXPLAIN}</dt>
+      		<dd>  
+            <select name="button_parent" id="menu_button_parent">
+           		<option value=""></option>
+      				<!-- BEGIN parents -->
+      					<option value="{parents.ID}"<!-- IF ( S_MENU_EDIT_BUTTON and parents.ID == S_PARENT ) or (not S_MENU_EDIT_BUTTON and parents.ID == S_PARENT_ID ) --> selected="selected"<!-- ENDIF -->>{parents.NAME}</option>
+      				<!-- END parents -->
+
+			
+      			</select>
+
+
+
+    			</dd>
+  			</dl>
+
+		<dl>
+    		  <dt><label for="menu_button_sub_parent">{L_MENU_BUTTON_SUB_PARENT}</label><br />{L_MENU_BUTTON_SUB_PARENT_EXPLAIN}</dt>
+      		<dd>  
+ 			<select name="button_sub_parent" id="menu_button_parent">
+           		<option value=""></option>
+
+			<!-- BEGIN sub_parents -->
+      					<option value="{sub_parents.ID}"<!-- IF ( S_MENU_EDIT_BUTTON and sub_parents.ID == S_SUB_PARENT ) or (not S_MENU_EDIT_BUTTON and sub_parents.ID == S_PARENT_ID ) --> selected="selected"<!-- ENDIF -->>{sub_parents.NAME}</option>
+      				<!-- END sub_parents -->
+
+      			</select>
+
+
+
+    			</dd>
+  			</dl>
+
+    		<dl>
+    			<dt><label for="menu_button_external_yes">{L_MENU_EXTERNAL}:</label></dt>
+    			<dd>
+            <input type="radio" class="radio" id="menu_button_external_yes" name="button_external" value="1"<!-- IF S_EXTERNAL --> checked="checked"<!-- ENDIF --> /> {L_YES} &nbsp; 
+    				<input type="radio" class="radio" id="menu_button_external_no" name="button_external" value="0"<!-- IF not S_EXTERNAL --> checked="checked"<!-- ENDIF --> /> {L_NO}
+          </dd>
+    		</dl>
+    		<dl>
+    			<dt><label for="menu_button_only_registered_yes">{L_MENU_ONLY_REGISTERED}:</label></dt>
+    			<dd>
+            <input type="radio" class="radio" id="menu_button_only_registered_yes" name="button_only_registered" value="1"<!-- IF S_ONLY_REGISTERED --> checked="checked"<!-- ENDIF --> /> {L_YES} &nbsp; 
+    				<input type="radio" class="radio" id="menu_button_only_registered_no" name="button_only_registered" value="0"<!-- IF not S_ONLY_REGISTERED --> checked="checked"<!-- ENDIF --> /> {L_NO}
+          </dd>
+    		</dl>
+    		<dl>
+    			<dt><label for="menu_button_only_guest_yes">{L_MENU_ONLY_GUEST}:</label></dt>
+    			<dd>
+            <input type="radio" class="radio" id="menu_button_only_guest_yes" name="button_only_guest" value="1"<!-- IF S_ONLY_GUEST --> checked="checked"<!-- ENDIF --> /> {L_YES} &nbsp; 
+    				<input type="radio" class="radio" id="menu_button_only_guest_no" name="button_only_guest" value="0"<!-- IF not S_ONLY_GUEST --> checked="checked"<!-- ENDIF --> /> {L_NO}
+          </dd>
+    		</dl>
+    		<dl>
+    			<dt><label for="menu_button_display_yes">{L_MENU_DISPLAY}:</label></dt>
+    			<dd>
+            <input type="radio" class="radio" id="menu_button_display_yes" name="button_display" value="1"<!-- IF S_DISPLAY or not S_MENU_EDIT_BUTTON --> checked="checked"<!-- ENDIF --> /> {L_YES} &nbsp; 
+    				<input type="radio" class="radio" id="menu_button_display_no" name="button_display" value="0"<!-- IF not S_DISPLAY and S_MENU_EDIT_BUTTON --> checked="checked"<!-- ENDIF --> /> {L_NO}
+          </dd>
+    		</dl>
+    	</fieldset>
+      <p class="submit-buttons">
+      	<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+      	<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+      </p>
+      {S_FORM_TOKEN}
+    </form> 
+        
+  <!-- ENDIF -->
+  
+<!-- ELSEIF S_MENU_COLORS -->
+    
+  <!-- IF S_MENU_COLORS_LIST -->
+  
+    <h1>{L_ACP_MENU_COLORS_TITLE}</h1>
+    
+    <p>{L_CREATE_COLOR_EXPLAIN}</p>
+  
+    <!-- IF .colors -->  
+    	<table cellspacing="2">
+    		<col class="row1" /><col class="row2" />
+    		<tbody>
+    		<!-- BEGIN colors -->
+    			<tr>
+    				<td>
+    					<strong>{colors.NAME}</strong> [<!-- IF colors.STYLE_NAME -->{colors.STYLE_NAME}<!-- ENDIF -->]
+    				</td>
+    				<td style="width: 20%; text-align: center; white-space: nowrap;">
+    					<a href="{colors.U_EDIT}">{ICON_EDIT}</a>
+    					<a href="{colors.U_DELETE}">{ICON_DELETE}</a>
+    				</td>
+    			</tr>
+    		<!-- END colors -->
+    		</tbody>
+    	</table>
+    <!-- ELSE -->
+      <div class="errorbox">{L_NO_COLORS}</div>
+    <!-- ENDIF -->  
+    
+    <form method="post" action="">    
+      <fieldset class="quick">
+      	<input class="post" type="text" maxlength="100" id="menu_color_name" name="color_name" value="" />
+        <input class="button2" type="submit" id="submit" name="submit" value="{L_ACP_MENU_ADD_COLOR_TITLE}" />&nbsp;
+        {S_FORM_TOKEN} 
+      </fieldset>
+    </form>
+
+  <!-- ELSEIF S_MENU_EDIT_COLOR or S_MENU_ADD_COLOR -->
+              
+    <h1><!-- IF S_MENU_ADD_COLOR -->{L_ACP_MENU_ADD_COLOR_TITLE}<!-- ELSE -->{L_ACP_MENU_EDIT_COLOR}<!-- ENDIF --></h1>
+    
+    <form method="post" action="">
+      <fieldset>
+    		<dl>
+    			<dt><label>{L_MENU_COLOR_NAME}</label></dt>
+    			<dd><input class="post" type="text" size="50" maxlength="100" name="color_name" value="{S_NAME}" /></dd>
+    		</dl>
+    		<dl>
+    			<dt><label>{L_MENU_STYLE}:</label></dt>
+    			<dd>
+    			  <select name="color_style_id">
+    			    <option value=""></option>
+    			    <!-- BEGIN styles -->
+                <option value="{styles.ID}"<!-- IF S_CHOSEN_STYLE == styles.ID --> selected="selected"<!-- ENDIF -->>{styles.NAME}</option>
+              <!-- END styles -->
+            </select>
+          </dd>
+    		</dl>
+    		<dl>
+    			<dt><label>{L_MENU_SEARCH}:</label></dt>
+    			<dd>
+            <input type="radio" class="radio" name="color_display_search" value="1"<!-- IF S_DISPLAY_SEARCH or S_MENU_ADD_COLOR --> checked="checked"<!-- ENDIF --> /> {L_YES} &nbsp; 
+    				<input type="radio" class="radio" name="color_display_search" value="0"<!-- IF not S_DISPLAY_SEARCH and S_MENU_EDIT_COLOR --> checked="checked"<!-- ENDIF --> /> {L_NO}
+          </dd>
+    		</dl>
+    		<dl>
+    			<dt><label>{L_MENU_WEIGHT}:</label></dt>
+    			<dd>
+    			  <select name="color_text_weight">
+              <option value="normal"<!-- IF S_TEXT_WEIGHT == 'normal' --> selected="selected"<!-- ENDIF -->>{L_MENU_NORMAL}</option>
+              <option value="bold"<!-- IF S_TEXT_WEIGHT == 'bold' or S_MENU_ADD_COLOR --> selected="selected"<!-- ENDIF -->>{L_MENU_BOLD}</option>
+            </select>
+          </dd>
+    		</dl>
+    		<dl>
+    			<dt><label>{L_MENU_TEXT_TRANSFORM}:</label></dt>
+    			<dd>
+    			  <select name="color_text_transform">
+              <option value="none"<!-- IF S_TEXT_WEIGHT == 'none' --> selected="selected"<!-- ENDIF -->>{L_MENU_NONE}</option>
+              <option value="uppercase"<!-- IF S_TEXT_TRANSFORM == 'uppercase' --> selected="selected"<!-- ENDIF -->>{L_MENU_UPPERCASE}</option>
+              <option value="lowercase"<!-- IF S_TEXT_TRANSFORM == 'lowercase' --> selected="selected"<!-- ENDIF -->>{L_MENU_LOWERCASE}</option>
+            </select>
+          </dd>
+    		</dl>
+    		<dl>
+    			<dt><label>{L_MENU_DECORATION}:</label></dt>
+    			<dd>
+            <select name="color_text_hover_decor">
+              <option value="none"<!-- IF S_TEXT_HOVER_DECOR == 'none' --> selected="selected"<!-- ENDIF -->>{L_MENU_NONE}</option>
+              <option value="underline"<!-- IF S_TEXT_HOVER_DECOR == 'underline' --> selected="selected"<!-- ENDIF -->>{L_MENU_UNDERLINE}</option>
+            </select>
+          </dd>
+    		</dl>
+    		<dl>
+    			<dt><label>{L_MENU_ALIGN}:</label></dt>
+    			<dd>
+            <select name="color_align">
+              <option value="left"<!-- IF S_ALIGN == 'left' --> selected="selected"<!-- ENDIF -->>{L_MENU_LEFT}</option>
+              <option value="right"<!-- IF S_ALIGN == 'right' --> selected="selected"<!-- ENDIF -->>{L_MENU_RIGHT}</option>
+            </select>
+          </dd>
+    		</dl>
+    		<dl>
+    			<dt><label>{L_MENU_FONT_COLOR}:</label></dt>
+    			<dd>
+            # <input class="post" type="text" size="20" name="color_text" value="{S_TEXT}" />
+          </dd>
+    		</dl>
+    		<dl>
+    			<dt><label>{L_MENU_FONT_COLOR_HOVER}:</label></dt>
+    			<dd>
+            # <input class="post" type="text" size="20" name="color_text_hover" value="{S_TEXT_HOVER}" />
+          </dd>
+    		</dl>
+    	</fieldset>
+      <p class="submit-buttons">
+      	<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+      	<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+      </p>
+      {S_FORM_TOKEN}
+    </form>
+    
+  <!-- ENDIF -->
+  <!-- ELSE -->
+  	<h1>{L_SETTINGS}</h1>
+
+	<form id="acp_board" method="post" action="{U_ACTION}">
+	<fieldset>
+		<dl>
+			<dt><label for="vipaka_navbar_enabled">{L_ACP_NAVBAR_ENABLE}</label></dt>
+			<dd><input type="radio" class="radio" name="vipaka_navbar_enable" value="1" <!-- IF VIPAKA_NAVBAR_ENABLE -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp;
+				<input type="radio" class="radio" name="vipaka_navbar_enable" value="0" <!-- IF not VIPAKA_NAVBAR_ENABLE -->checked="checked"<!-- ENDIF --> /> {L_NO}</dd>
+		</dl>
+    <dl>
+      <dt><label for="vipaka_navbar_type">{L_ACP_NAVBAR_TYPE}</label></dt>
+      <dd><input type="radio" class="radio" name="vipaka_navbar_type" value="1" <!-- IF S_NAVBAR_TYPE  == 1 -->checked="checked"<!-- ENDIF -->/> {L_DROPDOWN} &nbsp;
+        <input type="radio" class="radio" name="vipaka_navbar_type" value="0" <!-- IF S_NAVBAR_TYPE == 0 -->checked="checked"<!-- ENDIF --> /> {L_SLIDER}</dd>
+    </dl>
+     <dl>
+      <dt><label for="vipaka_navbar_parent">{L_ACP_NAVBAR_PARENT}</label></dt>
+      <dd> <input type="text" name="vipaka_navbar_parent" value="{S_NAVBAR_PARENT}" /></dd>
+    </dl>
+     <dl>
+      <dt><label for="vipaka_navbar_sub_parent">{L_ACP_NAVBAR_SUB_PARENT}</label></dt>
+      <dd> <input type="text" name="vipaka_navbar_sub_parent" value="{S_NAVBAR_SUB_PARENT}" /></dd>
+    </dl>
+     <dl>
+      <dt><label for="vipaka_navbar_sub_sub">{L_ACP_NAVBAR_SUB_SUB}</label></dt>
+      <dd> <input type="text" name="vipaka_navbar_sub_sub" value="{S_NAVBAR_SUB_SUB}" /></dd>
+    </dl>
+     <dl>
+      <dt><label for="vipaka_navbar_color">{L_ACP_NAVBAR_COLOR}</label></dt>
+      <dd> <input type="text" name="vipaka_navbar_color" value="{S_NAVBAR_COLOR}" /></dd>
+    </dl>
+    <dl>
+      <dt><label for="vipaka_navbar_font">{L_ACP_NAVBAR_FONT}</label></dt>
+      <dd> <input type="text" name="vipaka_navbar_font" value="{S_NAVBAR_FONT}" /></dd>
+    </dl>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit_config" name="submit_config" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		</p>
+
+		{S_FORM_TOKEN}
+	</fieldset>
+	</form>
+
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

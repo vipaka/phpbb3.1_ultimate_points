@@ -1,0 +1,45 @@
+{
+	"name": "vipaka/ultimate_points",
+	"type": "phpbb-extension",
+	"description": "Ultimate Points Extension for phpBB 3.1",
+	"homepage": "https://www.esmaerin.com/phpbb/ultimate_points.zip",
+	"version": "0.0.1",
+	"time": "2014-10-31",
+	"license": "GPL-2.0",
+	"authors": [{
+			"name": "Amelia Winstead",
+			"email": "ladyvipaka@yahoo.com",
+			"homepage": "www.esmaerin.com",
+			"role": "Developer"
+		},
+		{
+			"name": "femu",
+			"email": "unknown",
+			"homepage": "http://www.die-muellers.org",
+			"role": "Original Developer"
+		},
+		{
+			"name": "Wuerzi",
+			"email": "unknown",
+			"homepage": "http://spieleresidenz.de",
+			"role": "Original Developer"
+		},
+		{
+			"name": "el_teniente",
+			"email": "unknown",
+			"homepage": "http://vfalcone.ru/forum",
+			"role": "Original Developer"
+		}],
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"require-dev": {
+		"phpbb/epv": "dev-master"
+	},
+	"extra": {
+		"display-name": "Ultimate Points Extension",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.1.0-RC2,<3.2.*@dev"
+		}
+	}
+}

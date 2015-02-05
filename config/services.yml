@@ -1,0 +1,26 @@
+services:
+    vipaka.ultimate_points.controller:
+        class: vipaka\ultimate_points\controller\main
+        arguments:
+            - @auth
+            - @config
+            - @dbal.conn
+            - @controller.helper
+            - @template
+            - @user
+            - @cache.driver
+            - %core.root_path%
+            - %core.php_ext%
+    vipaka.ultimate_points.listener:
+        class: vipaka\ultimate_points\event\main_listener
+        arguments:
+            - @auth
+            - @controller.helper
+            - @template
+            - @dbal.conn
+            - @config
+            - @config_text
+            - @cache.driver
+            - @cache
+        tags:
+            - { name: event.listener }
